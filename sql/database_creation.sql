@@ -30,6 +30,6 @@ CREATE TABLE IF NOT EXISTS telas_exemplo.user_settings (
     `created_at` DATETIME NOT NULL DEFAULT NOW(),
     `updated_at` DATETIME NOT NULL DEFAULT NOW(),
     `deleted_at` DATETIME,
-    INDEX fk_user_settings_user_id (user_iduser_settings),
+    INDEX fk_user_settings_user_id (user_id),
     CONSTRAINT fk_user_user_settings FOREIGN KEY (user_id) REFERENCES users(id)
 );
