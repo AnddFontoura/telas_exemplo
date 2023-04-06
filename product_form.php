@@ -94,31 +94,31 @@
     </header>
 
     <main>
-        <form action="" method="">
+        <form action="product_save.php" method="POST">
             <div class="album py-5">
                 <div class="container">
                     <div class="mb-3 row">
                         <label for="inputName" class="col-sm-2 col-form-label">Nome</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputName">
+                            <input name="productName" type="text" class="form-control" id="inputName">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="inputPrice" class="col-sm-2 col-form-label">Preço</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="inputPrice">
+                            <input name="productPrice" type="number" class="form-control" id="inputPrice">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="inputSku" class="col-sm-2 col-form-label">SKU</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputSku">
+                            <input name="productSku" type="text" class="form-control" id="inputSku">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="inputDescription" class="col-sm-2 col-form-label">Descrição</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="inputDescription"></textarea>
+                            <textarea name="productDescription" class="form-control" id="inputDescription"></textarea>
                         </div>
                     </div>
                     <div class="mb-3 row">
