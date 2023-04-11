@@ -33,3 +33,10 @@ CREATE TABLE IF NOT EXISTS telas_exemplo.user_settings (
     INDEX fk_user_settings_user_id (user_id),
     CONSTRAINT fk_user_user_settings FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+--11-04-2023
+-- Adiciona campo de imagem
+-- Adiciona campo de valor
+ALTER TABLE products
+ADD image_path VARCHAR(1000) NOT NULL;
+

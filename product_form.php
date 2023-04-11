@@ -94,7 +94,7 @@
     </header>
 
     <main>
-        <form action="product_save.php" method="POST">
+        <form action="product_save.php" method="POST" enctype="multipart/form-data">
             <div class="album py-5">
                 <div class="container">
                     <div class="mb-3 row">
@@ -119,6 +119,12 @@
                         <label for="inputDescription" class="col-sm-2 col-form-label">Descrição</label>
                         <div class="col-sm-10">
                             <textarea name="productDescription" class="form-control" id="inputDescription"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="inputImage" class="col-sm-2 col-form-label">Imagem</label>
+                        <div class="col-sm-10">
+                            <input name="inputImage" type="file" class="form-control" id="inputImage">
                         </div>
                     </div>
                     <div class="mb-3 row">
