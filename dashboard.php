@@ -18,19 +18,8 @@
     //var_dump($result);
     //echo "</pre>";
 ?>
-<!doctype html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.104.2">
-    <title>Album example · Bootstrap v5.2</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+<?php include_once('includes/header.php'); ?>
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -83,8 +72,6 @@
             -webkit-overflow-scrolling: touch;
         }
     </style>
-
-
 </head>
 
 <body>
@@ -144,10 +131,7 @@
                 ?>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
+                            <img src="upload/products/<?php echo $row['image_path']; ?>">
 
                             <div class="card-body">
                                 <h1> <?php echo $row['name']; ?> </h1>
@@ -155,7 +139,7 @@
                                 <p class="card-text"><?php echo $row['description']; ?></p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><?php echo $row['price']; ?></button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">R$ <?php echo number_format($row['price'], 2, ',' , '.'); ?></button>
                                     </div>
                                     <small class="text-muted">9 mins</small>
                                 </div>
@@ -171,20 +155,4 @@
 
     </main>
 
-    <footer class="text-muted py-5">
-        <div class="container">
-            <p class="float-end mb-1">
-                <a href="#">Back to top</a>
-            </p>
-            <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.2/getting-started/introduction/">getting started guide</a>.</p>
-        </div>
-    </footer>
-
-
-    <script src="js/bootstrap.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
-
-</body>
-
-</html>
+    <?php include_once('includes/footer.php'); ?>

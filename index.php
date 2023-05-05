@@ -10,7 +10,7 @@
     <title>Signin Template · Bootstrap v5.2</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <script link="js/jquery.js"></script>
 
     <style>
         .bd-placeholder-img {
@@ -108,16 +108,18 @@
     <main class="form-signin w-100 m-auto">
         <form action="login.php" method="POST">
             <?php
-                if (isset($error)) {
-                    echo '
+            if (isset($error)) {
+                echo '
                         <div class="alert alert-danger"> ' . $error . ' </div>
                     ';
-                }
+            }
             ?>
-           <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <div class='alert alert-danger' id='errorEmail' style='visibility: hidden'>
+                E-mail em formato inválido
+            </div>
             <div class="form-floating">
-                <input name="loginEmail" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input name="loginEmail" type="email" class="form-control" id="floatingEmail" onChange="validateEmail()">
                 <label for="floatingInput">Email</label>
             </div>
             <div class="form-floating">
@@ -125,13 +127,37 @@
                 <label for="floatingPassword">Senha</label>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Logar</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" id='submitButton'>Logar</button>
             <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
         </form>
     </main>
 
 
+    <script>
+        function validateEmail()
+        {
+            let email = document.getElementById('floatingEmail').value;
+            let emailPattern = /[A-z0-9]{1,99}@[A-z09]{1,50}.\./;
+            let error = 0;
+            let submitButton = document.getElementById('submitButton');
+            let emailForm = document.getElementById('floatingEmail');
+            let errorEmail = document.getElementById('errorEmail');
 
+            if (emailPattern.test(email) === false) {
+                //alert('Email em formato inválido');
+                emailForm.classList.add("invalid");
+                error = 1;
+            }
+
+            if (error == 1) {
+                submitButton.disabled = true;
+                errorEmail.style.visibility = 'visible';
+            } else {
+                submitButton.disabled = false;
+                errorEmail.style.visibility = 'hidden';
+            }
+        }
+    </script>
 </body>
 
 </html>

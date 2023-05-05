@@ -1,68 +1,56 @@
-<!doctype html>
-<html lang="en">
+<?php include_once('includes/header.php'); ?>
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.104.2">
-    <title>Album example · Bootstrap v5.2</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
         }
+    }
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
+    .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
 
-        .b-example-divider {
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
+    .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+    }
 
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
+    .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+    }
 
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
+    .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+    }
 
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-    </style>
+    .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+</style>
 
 
 </head>
@@ -97,12 +85,14 @@
         <form action="product_save.php" method="POST" enctype="multipart/form-data">
             <div class="album py-5">
                 <div class="container">
-                    <div class="mb-3 row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Nome</label>
-                        <div class="col-sm-10">
-                            <input name="productName" type="text" class="form-control" id="inputName">
-                        </div>
-                    </div>
+                    <?php
+                    form([
+                        'name' => 'productName',
+                        'id' => 'productNameId',
+                        'type' => 'text',
+                        'labelName' => 'Produto'
+                    ]);
+                    ?>
                     <div class="mb-3 row">
                         <label for="inputPrice" class="col-sm-2 col-form-label">Preço</label>
                         <div class="col-sm-10">
@@ -128,7 +118,7 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <input type="submit" class="btn btn-lg btn-success w-100" value="Salvar">
+                        <input type="submit" class="btn btn-lg btn-success w-100" value="Salvar" id='formSubmit'>
                     </div>
                 </div>
             </div>
@@ -147,6 +137,35 @@
 
 
     <script src="js/bootstrap.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready( function() {
+            console.log('carregou');
+        });
+
+        $('#formSubmit').hover(function() {
+            let productForm = $('#productNameId');
+            let productName = $('#productNameId').val();
+            let submitButton = $("#formSubmit");
+            let productNameRegex = new RegExp('[0-9]');
+
+            if (productName.length < 10  || productNameRegex.test(productName) === true) {
+                productForm.addClass('is-invalid');
+                submitButton.addClass('disabled');
+            }
+        });
+
+        $("#productNameId").on('change', function() {
+            let productForm = $('#productNameId');
+            let productName = $('#productNameId').val();
+            let submitButton = $("#formSubmit");
+            let productNameRegex = new RegExp('[0-9]');
+
+            if (productName.length > 10) {
+                productForm.removeClass('is-invalid');
+                submitButton.removeClass('disabled');
+            }
+        })
+    </script>
 
 
 </body>
